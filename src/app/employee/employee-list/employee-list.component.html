@@ -1,0 +1,124 @@
+<!--View-->
+<nz-table [hidden]="create || update">
+  <div>
+    <h2 style="display: inline-block">Employee</h2>
+    <button (click)="onCreate()" nz-button nzType="primary" style="float: right">Add</button>
+  </div>
+  <nz-table #employeeTable [nzData]="employees" [nzShowSizeChanger]="true" [nzShowQuickJumper]="true">
+    <thead>
+    <tr>
+      <th *ngFor="let title of listTitle" [nzSortOrder]="'descend'"
+          [nzSortDirections]="['ascend', 'descend', null]"
+          [nzFilterMultiple]="false">
+        {{title.title}}
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let emp of employeeTable.data">
+      <td>{{emp.id}}</td>
+      <td>{{emp.name}}</td>
+      <td>
+        <div *ngIf="emp.gender == '1'">Man</div>
+        <div *ngIf="emp.gender == '0'">Woman</div>
+      </td>
+      <td>{{emp.age}}</td>
+      <td>{{emp.email}}</td>
+      <td>{{emp.address}}</td>
+      <td>
+        <div *ngIf="emp.status == '1'">Active</div>
+        <div *ngIf="emp.status == '0'">Not active</div>
+      </td>
+      <td>
+        <button (click)="onDetails(emp)" nz-button nzType="primary">Detail</button>
+        <button (click)="onUpdate(emp)" nz-button nzType="primary">Update</button>
+        <button (click)="onDelete(emp)" nz-button nzType="primary" nzDanger>Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </nz-table>
+</nz-table>
+
+
+
+<!--create-->
+<form nz-form (ngSubmit)="onSubmit()" [hidden]="!create && !update">
+  <div>
+    <h2 *ngIf="create">Create Employee</h2>
+    <h2 *ngIf="update">Update Employee</h2>
+  </div>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" [nzRequired]="true">Id</nz-form-label>
+    <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Input is required">
+      <label>
+        <input nz-input type="text" [(ngModel)]="mtmpEmployee.id" name="id" required/>
+      </label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" [nzRequired]="true">Name</nz-form-label>
+    <nz-form-control nzHasFeedback [nzSpan]="12">
+      <label>
+        <input nz-input type="text" [(ngModel)]="mtmpEmployee.name" name="name" maxlength="50" required/>
+      </label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" [nzRequired]="true">Age</nz-form-label>
+    <nz-form-control nzHasFeedback [nzSpan]="12">
+      <label>
+        <input nz-input type="number" [(ngModel)]="mtmpEmployee.age" name="age" minlength="6" required/>
+      </label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" [nzRequired]="true">E-mail</nz-form-label>
+    <nz-form-control nzHasFeedback [nzSpan]="12">
+      <label>
+        <input nz-input type="email" [(ngModel)]="mtmpEmployee.email" name="email" required/>
+      </label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" [nzRequired]="true">Address</nz-form-label>
+    <nz-form-control nzHasFeedback [nzSpan]="12">
+      <label>
+        <input nz-input type="text" [(ngModel)]="mtmpEmployee.address" name="address" required/>
+      </label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" [nzRequired]="true">Gender</nz-form-label>
+    <nz-form-control nzHasFeedback [nzSpan]="12">
+
+      <nz-select name="gender" [(ngModel)]="mtmpEmployee.gender" required>
+        <nz-option nzValue="1" nzLabel="Man"></nz-option>
+        <nz-option nzValue="0" nzLabel="Woman"></nz-option>
+      </nz-select>
+
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" [nzRequired]="true">Status</nz-form-label>
+    <nz-form-control nzHasFeedback [nzSpan]="12">
+      <nz-select name="gender" [(ngModel)]="mtmpEmployee.status" required>
+        <nz-option nzValue="1" nzLabel="Active"></nz-option>
+        <nz-option nzValue="0" nzLabel="Not active"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control [nzOffset]="7" [nzSpan]="12">
+      <button nz-button nzType="primary">Submit</button>
+      <button nz-button (click)="reloadData()">Back</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

@@ -1,0 +1,76 @@
+<form nz-form (ngSubmit)="onSubmit()" [hidden]="!a">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" [nzRequired]="true">Id</nz-form-label>
+    <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Input is required">
+      <label>
+        <input nz-input type="text" [(ngModel)]="mtmpEmployee.id" name="id" required/>
+      </label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" [nzRequired]="true">Name</nz-form-label>
+    <nz-form-control nzHasFeedback [nzSpan]="12">
+      <label>
+        <input nz-input type="text" [(ngModel)]="mtmpEmployee.name" name="name" maxlength="50" required/>
+      </label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" [nzRequired]="true">Age</nz-form-label>
+    <nz-form-control nzHasFeedback [nzSpan]="12">
+      <label>
+        <input nz-input type="number" [(ngModel)]="mtmpEmployee.age" name="age" minlength="6" required/>
+      </label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" [nzRequired]="true">E-mail</nz-form-label>
+    <nz-form-control nzHasFeedback [nzSpan]="12">
+      <label>
+        <input nz-input type="email" [(ngModel)]="mtmpEmployee.email" name="email" required/>
+      </label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" [nzRequired]="true">Address</nz-form-label>
+    <nz-form-control nzHasFeedback [nzSpan]="12">
+      <label>
+        <input nz-input type="text" [(ngModel)]="mtmpEmployee.address" name="address" required/>
+      </label>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" [nzRequired]="true">Gender</nz-form-label>
+    <nz-form-control nzHasFeedback [nzSpan]="12">
+
+      <nz-select name="gender" [(ngModel)]="mtmpEmployee.gender" required>
+        <nz-option nzValue="1" nzLabel="Man"></nz-option>
+        <nz-option nzValue="2" nzLabel="Woman"></nz-option>
+      </nz-select>
+
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" [nzRequired]="true">Status</nz-form-label>
+    <nz-form-control nzHasFeedback [nzSpan]="12">
+      <nz-select name="gender" [(ngModel)]="mtmpEmployee.status" required>
+        <nz-option nzValue="1" nzLabel="Active"></nz-option>
+        <nz-option nzValue="0" nzLabel="Not active"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control [nzOffset]="7" [nzSpan]="12">
+      <button nz-button nzType="primary">Submit</button>
+      <button nz-button (click)="list()">Back</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
