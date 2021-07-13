@@ -3,6 +3,7 @@
   "rulesDirectory": [
     "codelyzer"
   ],
+  "no-trailing-whitespace": true,
   "rules": {
     "align": {
       "options": [

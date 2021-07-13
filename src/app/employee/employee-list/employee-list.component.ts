@@ -2,12 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {Employee} from '../../entity/employee';
 import {Router} from '@angular/router';
 import {EMPLOYEES} from '../../data/data-employee';
+import {DEPARTMENTS} from '../../data/data-department';
+import { Department } from 'src/app/entity/department';
 
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.css']
 })
+
 export class EmployeeListComponent implements OnInit {
 
   create = false;
@@ -76,3 +79,5 @@ export class EmployeeListComponent implements OnInit {
     this.reloadData();
   }
 }
+
+
